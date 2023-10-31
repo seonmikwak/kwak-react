@@ -1,8 +1,0 @@
-const Exam05 = ()=>{
-
-    return(
-        <div>
-            <h1>다섯 번째 예제</h1>
-        </div>
-    );
-}
