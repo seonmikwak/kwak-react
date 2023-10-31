@@ -3,7 +3,7 @@ import './App.css';
 import Exam01 from './components/Exam01';
 import Exam02 from './components/Exam02';
 import Exam03 from './components/Exam03';
-import Exam04 from './components/Exam04';
+import Exam04 from './components/Exam04_01';
 
 function App() {
   return (
