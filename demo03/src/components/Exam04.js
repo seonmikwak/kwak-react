@@ -16,9 +16,9 @@ const Exam04 = ()=>{//람다식
     },[content]);
 
     return(
-        <div className="container">
+        <div className="container-fluid">
              <div className="row">
-                <div className="col">
+                <div className="col-md-10 offset-md-1">
                     <h1>네 번째 예제</h1>
                 </div>
             </div>
