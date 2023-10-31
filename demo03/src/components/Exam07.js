@@ -10,31 +10,34 @@ const Exam07 = () =>{
     });
 
     const[result, setResult] = useState({//검사결과
-        memberId:false,
-        memberPw:false,
-        memberPwRe:false
+        memberId:null,
+        memberPw:null,
+        memberPwRe:null
     });
     //입력데이터가 변하면 검사결과가 자동으로 계산되도록 처리
-    useEffect(()=>{
-        //console.log("member가 변했습니다.");
+    const checkMember = ()=>{
+        // console.log("member가 변했습니다.");
         //ID검사
         const idRegex = /^[a-z][a-z0-9]{7,19}$/;
-        const idMatch = idRegex.test(member.memberId);
+        const idMatch = member.memberId.length === 0 ? null : idRegex.test(member.memberId);
 
         //PW검사
         const pwRegex = /^[A-Za-z0-9!@#$]{8,16}$/;
-        const pwMatch = pwRegex.test(member.memberPw);
+        const pwMatch = member.memberPw.length === 0 ? null : pwRegex.test(member.memberPw);
 
         //PW-RE검사
         // const pwReMatch = 비밀번호 1글자 이상 && 비밀번호 == 비밀번호 확인값;
-        const pwReMatch = member.memberPw.length > 0 && member.memberPw === member.memberPwRe;
+        const pwReMatch = member.memberPwRe.length === 0 ? null :
+                    member.memberPw.length > 0 && member.memberPw === member.memberPwRe;
 
         setResult({
             memberId : idMatch,
             memberPw : pwMatch,
             memberPwRe : pwReMatch
         });
-    },[member]);
+    };
+
+    // useEffect(checkMember,[member]);
 
     //객체의 상태를 한 번에 변경하는 함수를 구현
     const changeMember = (e)=>{
@@ -61,10 +64,11 @@ const Exam07 = () =>{
                         <div className="col">
                             <label className="form-label">아이디</label>
                             <input type="text" name="memberId" value={member.memberId} 
-                                onChange={changeMember} 
+                                onChange={changeMember} onBlur={checkMember} 
                                 className={`
                                     form-control 
-                                    ${result.memberId ? 'is-valid' : 'is-invalid'}
+                                    ${result.memberId === true ? 'is-valid' : ''}
+                                    ${result.memberId === false ? 'is-invalid' : ''}
                                     `}
                             />
                             <div className="valid-feedback">멋진 아이디입니다.</div>
@@ -76,10 +80,11 @@ const Exam07 = () =>{
                         <div className="col">
                         <label className="form-label">비밀번호</label>
                             <input type="password" name="memberPw" value={member.memberPw} 
-                                onChange={changeMember} 
+                                onChange={changeMember} onBlur={checkMember} 
                                 className={`
                                     form-control
-                                    ${result.memberPw ? 'is-valid' : 'is-invalid'}
+                                    ${result.memberPw === true ? 'is-valid' : ''}
+                                    ${result.memberPw === false ? 'is-invalid' : ''}
                                 `}/>
                             <div className="valid-feedback">올바른 형식의 비밀번호입니다.</div>
                             <div className="invalid-feedback">비밀번호 형식이 올바르지 않습니다.</div>
@@ -90,10 +95,11 @@ const Exam07 = () =>{
                         <div className="col">
                             <label className="form-label">비밀번호 확인</label>
                             <input type="password" name="memberPwRe" value={member.memberPwRe} 
-                                    onChange={changeMember} 
+                                    onChange={changeMember} onBlur={checkMember} 
                                     className={`
                                         form-control
-                                        ${result.memberPwRe ? 'is-valid' : 'is-invalid'}
+                                        ${result.memberPwRe === true ? 'is-valid' : ''}
+                                        ${result.memberPwRe === false ? 'is-invalid' : ''}
                                     `}/>
                             <div className="valid-feedback">비밀번호가 일치합니다.</div>
                             <div className="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
@@ -105,8 +111,8 @@ const Exam07 = () =>{
                     <div className="row my-4">
                         <div className="col text-end">
                             <button type="submit" className="btn btn-primary"
-                                disabled={!(result.memberId && result.memberPw 
-                                            && result.memberPwRe)}>가입하기</button>
+                                disabled={!(result.memberId === true && result.memberPw === true 
+                                            && result.memberPwRe === true)}>가입하기</button>
                         </div>
                     </div>
 
