@@ -256,7 +256,6 @@ const Exam10 = ()=>{
                                         </td>
                                     </tr>
                                 )
-                                    
                             ))}
                         </tbody>
                     </table>
