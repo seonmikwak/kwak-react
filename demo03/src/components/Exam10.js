@@ -102,6 +102,7 @@ const Exam10 = ()=>{
         });
         setItems(newItems);
     };
+    
     const saveItem = (target) =>{
 
         //백업 데이터 중 target과 번호가 같은 데이터를 갱신
@@ -288,7 +289,7 @@ const Exam10 = ()=>{
                 <div className="modal-content">
                   <div className="modal-header">
                     <h5 className="modal-title" id="exampleModalLabel">신규 상품 등록</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" className="btn-close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
