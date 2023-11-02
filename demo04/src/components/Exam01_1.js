@@ -190,7 +190,7 @@ const Exam01_1 = ()=>{
                                 <option>취미</option>
                                 <option>공부</option>
                                 <option>운동</option>
-                            </select>
+                           </select>
                         </div>
                     </div>
                     
@@ -207,5 +207,6 @@ const Exam01_1 = ()=>{
         </div>
     );
 };
+                
 
 export default Exam01_1;
