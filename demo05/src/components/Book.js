@@ -12,7 +12,7 @@ const Book = (props)=>{
 
   const loadBook = () => {
     axios ({
-      url:"http://localhost:8080/book/",
+      url:`${process.env.REACT_APP_REST_API_URL}/book/`,
       method:"get"
     })
     .then(response=>{//성공
@@ -33,8 +33,8 @@ const Book = (props)=>{
 
     //axios({옵션}).then(성공시 실행할 함수).catch(실패시 실행할 함수);
     axios({
-      // url:`http://localhost:8080/book/${book.bookId}`,
-      url : "http://localhost:8080/book"+book.bookId,
+      // url : "http://localhost:8080/book"+book.bookId,
+      url:`${process.env.REACT_APP_REST_API_URL}/${book.bookId}`,
       method:"delete"
     })
     .then(response =>{
@@ -72,7 +72,7 @@ const Book = (props)=>{
     
     // axios({옵션}).then(성공시 콜백).catch(실패시 콜백);
     axios({
-      url:"http://localhost:8080/book/",
+      url:`${process.env.REACT_APP_REST_API_URL}`,
       method:"post",
       data:book
       // data:{...book}
@@ -93,30 +93,15 @@ const Book = (props)=>{
 
   //도서 수정 처리
   const updateBook = ()=>{
-    const{
-      bookTitle,
-      bookAuthor,
-      bookPublicationDate,
-      bookPrice,
-      bookPublisher,
-      bookPageCount,
-      bookGenre
-    } = book;
+    const copyBook = {...book};
+    delete copyBook.bookId;
 
     axios({
-      url:'http://localhost:8080/book/${bookId}',
+      url:`${process.env.REACT_APP_REST_API_URL}/book/${book.bookId}`,
       method:"put",
-      data:{
-        bookTitle:bookTitle,
-        bookAuthor:bookAuthor,
-        bookPublicationDate:bookPublicationDate,
-        bookPrice:bookPrice,
-        bookPublisher:bookPublisher,
-        bookPageCount:bookPageCount,
-        bookGenre:bookGenre
-      }
+      data:copyBook
     })
-    .then(respose=>{
+    .then(response=>{
       loadBook();
       closeModal();
     })
