@@ -52,19 +52,38 @@ const Pocketmon = (props)=>{
   const closeModal = ()=>{
     const modal = Modal.getInstance(bsModal.current);
     modal.hide();
+    clearPocketmon();
   };
 
   //등록과 관련된 state
-  const [pocketmon, setPocketmon] = useState({
-    name:"",
-    type:"",
-  });
-
+  const [pocketmon, setPocketmon] = useState({name:"",type:"",});
   const changePocketmon = (e)=>{
     setPocketmon({
       ...pocketmon,
       [e.target.name] : e.target.value
     });
+  };
+
+  //입력창에 값을 지우는
+  const clearPocketmon = ()=>{
+    setPocketmon({name:"", type:""});
+  };
+
+  //axios로 서버에 등록 요청을 보낸 뒤 등록이 성공하면 목록을 갱신하도록 처리
+  const savePocketmon = ()=>{
+    //입력값 검사 후 차단 코드 추가
+
+    // axios({옵션}).then(성공시 콜백).catch(실패시 콜백);
+    axios({
+      url:"http://localhost:8080/pocketmon/",
+      method:"post",
+      data:pocketmon//전송할 데이터
+    })
+    .then(response=>{//성공했다면
+      loadPocketmon();//목록을 갱신하고
+      closeModal();//모달을 닫아라
+    })
+    .catch(err=>{});
   };
 
   return (
@@ -126,7 +145,7 @@ const Pocketmon = (props)=>{
             <div className="modal-content">
             <div className="modal-header">
                 <h5 className="modal-title" >제목</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" className="btn-close" data-dismiss="modal" onClick={closeModal}>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -152,7 +171,7 @@ const Pocketmon = (props)=>{
             </div>
             <div className="modal-footer">
                 <button className="btn btn-secondary" onClick={closeModal}>닫기</button>
-                <button className="btn btn-success">저장</button>
+                <button className="btn btn-success" onClick={savePocketmon}>저장</button>
             </div>
             </div>
         </div>
