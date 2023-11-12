@@ -4,6 +4,7 @@ import Book from "./components/Book";
 import Home from "./components/Home";
 import Menu from "./components/Menu";
 import BookInfinite from "./components/BookInfinite";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/pocketmon" element={<Pocketmon/>}></Route>
             <Route path="/book" element={<Book/>}></Route>
             <Route path="/book2" element={<BookInfinite/>}></Route>
+            <Route path="/profile" element={<Profile/>}></Route>
           </Routes>
         </div>
       </div>

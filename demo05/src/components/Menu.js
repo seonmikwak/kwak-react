@@ -23,6 +23,9 @@ const Menu = props=>{
               <li className="nav-item">
                 <NavLink className={`nav-link ${location.pathname === '/book2' ? 'active' : ''}`} to="/book2">도서(무한)</NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink className={`nav-link ${location.pathname === '/profile' ? 'active' : ''}`} to="/profile">프로필</NavLink>
+              </li>
             </ul>
             <form className="d-flex">
               <input className="form-control me-sm-2" type="search" placeholder="Search"/>
