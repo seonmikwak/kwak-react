@@ -25,7 +25,7 @@ const Profile = (props) =>{
       <button className="btn btn-primary">일단 프로필 모달 나올 버튼</button>
 
       {/* Modal */}
-      <div className="modal fade" ref={bsModal} 
+      {/* <div className="modal fade" ref={bsModal} 
                 data-bs-backdrop="static" tabIndex="-1" role="dialog" aria-hidden="true">
         <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -43,7 +43,7 @@ const Profile = (props) =>{
             </div>
             </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };
